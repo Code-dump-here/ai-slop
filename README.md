@@ -34,6 +34,8 @@ pip install edge-tts
 powershell -ExecutionPolicy Bypass -File get-assets.ps1
 ```
 
+This script uses the Pexels API to download 15 vertical abstract background videos suitable for short-form content. The videos are saved to the `assets/` folder as `bg1.mp4` through `bg15.mp4`.
+
 ## Usage
 
 Run the batch generator:
@@ -46,6 +48,7 @@ This will create 7 videos in `output/videos/` with corresponding audio, subtitle
 ## Project Structure
 
 ```
+get-assets.ps1  - PowerShell script to download background videos from Pexels
 scripts/
   batch.js      - Main batch processing script
   content.js    - Content generation (hooks + facts)
@@ -73,5 +76,10 @@ Edit `batch.js` to change:
 - Background videos are randomly selected from `assets/bg1.mp4` through `assets/bg15.mp4`
 
 Edit `content.js` to customize:
-- Hooks (attention-grabbing openers)
+- Hooks (attention-grabbing openers
+
+Edit `get-assets.ps1` to customize:
+- `QUERY` - Search term for background videos (default: "abstract vertical")
+- `COUNT` - Number of background videos to download (default: 15)
+- API key is included for Pexels (free tier))
 - Facts (psychological/brain facts)

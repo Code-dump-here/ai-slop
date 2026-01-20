@@ -5,6 +5,7 @@ import { makeSubs } from "./subtitles.js";
 import { buildVideo } from "./video.js";
 
 const COUNT = 7;
+const BG_VIDEOS = Array.from({ length: 15 }, (_, i) => `assets/bg${i + 1}.mp4`);
 
 async function run() {
   for (let i = 0; i < COUNT; i++) {
@@ -16,9 +17,11 @@ async function run() {
     const video = `output/videos/${id}.mp4`;
     const caption = `output/captions/${id}.txt`;
 
+    const bgVideo = BG_VIDEOS[Math.floor(Math.random() * BG_VIDEOS.length)];
+
     await tts(text, audio);
     makeSubs(text, subs);
-    await buildVideo("assets/bg1.mp4", audio, subs, video);
+    await buildVideo(bgVideo, audio, subs, video);
 
     fs.writeFileSync(
       caption,
